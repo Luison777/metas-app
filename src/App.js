@@ -1,9 +1,9 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { useState } from 'react';
-const EntradaLateral=({nombre,destino,clase})=>{
+const EntradaLateral=({nombre,destino,clase,src})=>{
   return  (<button className={clase} onClick={destino}>
-   {nombre}
+   <img className='tarjetaicon' src={src}></img>{nombre}
  </button>)
  }
 function App() {
@@ -11,14 +11,16 @@ function App() {
   const[seeButtonUpdate,setseeButtonUpdate]=useState(true);
   const[seeButtonCrear,setseeButtonCrear]=useState(true);
   const[almacenamiento,setAlmacenamiento]=useState([]);
-  const[seeMensaje,setSeeMensaje]=useState(true);
+  
   const[index,setIndex]=useState(undefined);
   const[update,setUpdate]=useState(false);
   /*esta seccion contiene todos los elementos usados en la app*/
     const[input1,setInput1]=useState("ej. 52 caminatas");
     const[input2,setInput2]=useState("1");
-    const[input4,setInput4]=useState("1");
-    const[input6,setInput6]=useState("0");
+    const[input4,setInput4]=useState();
+    const[input6,setInput6]=useState();
+    const[input7,setInput7]=useState();
+    
   const Formulario=()=>{
     
    
@@ -62,10 +64,10 @@ function App() {
       <div className='contenedor'>
       <label>{"ESCOGE EL ICONO PARA LA META"}</label>
       <select name={"v7"} id='select2'>
-        <option>al dia</option>
-        <option>a la semana</option>
-        <option>al mes</option>
-        <option>al año</option>
+        <option>🏃‍♂️</option>
+        <option>💻</option>
+        <option>📖</option>
+        <option>🍎</option>
       </select >
       </div>
      
@@ -86,6 +88,18 @@ function App() {
   }
   const CrearTarjeta= almacenamiento.map((obj,key)=>{
     let tiempo= obj["v3"]=="al dia"? "dia": obj["v3"]=="a la semana"? "semana":obj["v3"]=="al mes"? "mes":"año";
+
+  
+
+    let inicio=parseInt(obj['v6']);
+    let fin=parseInt(obj['v4']);
+    
+    let ancho;
+    if (inicio<fin){
+      ancho={ width: inicio*100/fin+'%'};
+    }else(ancho={width:100+'%'})
+
+
     const clickTarjeta=({})=>{
       setIndex(key);
       setMostrarFormulario(true);
@@ -95,19 +109,32 @@ function App() {
     
         setInput1(almacenamiento[key]["v1"]);
         setInput2(almacenamiento[key]["v2"]);
-        setInput4(almacenamiento[key]["v4"]);
-        setInput6(almacenamiento[key]["v6"]);
+        setInput4(parseInt(almacenamiento[key]["v4"]));
+        setInput6(parseInt(almacenamiento[key]["v6"]));
+        setInput7(almacenamiento[key]["v7"]);
       
     }
+
+    const completado=()=>{
+      if (inicio<fin){
+      inicio++;
+      setInput6(almacenamiento[key]["v6"]=inicio);
+      }else{setInput6(almacenamiento[key]["v6"]=fin);}
+    }
+    
+     
+
     return  (
       <div key={key} className='tarjeta' >
       <div className='divtarjeta' type="button" id={key} onClick={clickTarjeta} >
-        <img src='src\logo.svg'></img>
+        <p className='cero'>{obj["v7"]}</p>
         <p className='uno'>{obj["v2"]}/{tiempo}</p>
         <p  className='dos'>{obj["v1"]}</p>
-        <span>{obj["v6"]}de{obj["v4"]}</span>
+        <span>{obj["v6"]} de {obj["v4"]}
+        <div className='barra1'><div style={ancho} className='barra2'></div></div>
+        </span>
       </div>
-      <button >Completado</button>
+      <button onClick={completado} >Completado</button>
       </div>
     );
     });
@@ -169,10 +196,10 @@ function App() {
   return (
     <div className="App">
       <>
-     <header>METAS APP</header>
+     <header><img className='fuego' src='.\fuego.png'></img>METAS APP</header>
      <aside>
-        <EntradaLateral clase={"lateral"} nombre={'Lista de Metas'} destino={clickListaMetas}/>
-        <EntradaLateral clase={"lateral"} nombre={'Nueva Meta'} destino={clickNuevaMeta}/>
+        <EntradaLateral src='.\lista.png' clase={"lateral"} nombre={'Lista de Metas'} destino={clickListaMetas}/>
+        <EntradaLateral src='.\plus.png' clase={"lateral"} nombre={'Nueva Meta'} destino={clickNuevaMeta}/>
      </aside>
      <main>
       {mostrarFormulario? <Formulario/>:null}
