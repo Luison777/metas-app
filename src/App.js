@@ -1,16 +1,23 @@
 
 import './App.css';
 import { useState } from 'react';
+
 const EntradaLateral=({nombre,destino,clase,src})=>{
+  
   return  (<button className={clase} onClick={destino}>
    <img className='tarjetaicon' src={src}></img>{nombre}
  </button>)
  }
+
 function App() {
+  let estadoLocal=JSON.parse(localStorage.getItem('metas'));
+  let informacion;
+  estadoLocal? informacion=estadoLocal :informacion=[];
+
   const[mostrarFormulario,setMostrarFormulario]=useState(false);
   const[seeButtonUpdate,setseeButtonUpdate]=useState(true);
   const[seeButtonCrear,setseeButtonCrear]=useState(true);
-  const[almacenamiento,setAlmacenamiento]=useState([]);
+  const[almacenamiento,setAlmacenamiento]=useState(informacion);
   
   const[index,setIndex]=useState(undefined);
   const[update,setUpdate]=useState(false);
@@ -20,7 +27,14 @@ function App() {
     const[input4,setInput4]=useState();
     const[input6,setInput6]=useState();
     const[input7,setInput7]=useState();
-    
+  
+  
+
+ 
+  console.log(almacenamiento);
+
+
+
   const Formulario=()=>{
     
    
@@ -75,6 +89,7 @@ function App() {
       <div className='footerForm'>
       {seeButtonCrear? <Boton texto={"Crear"} clase={"crearButton"} type={"submit"}/>:null}
       {seeButtonUpdate? <Boton texto={"Actualizar"} clase={"updateButton"} type={"submit"} />:null}
+      {seeButtonUpdate? <Boton texto={"Borrar"} clase={"deleteButton"} destino={borar}/>:null}
       <Boton texto={"Cancelar"} clase={"cancelarButton"} destino={clickCancelarForm} />
       
       </div>
@@ -86,6 +101,7 @@ function App() {
    
     
   }
+
   const CrearTarjeta= almacenamiento.map((obj,key)=>{
     let tiempo= obj["v3"]=="al dia"? "dia": obj["v3"]=="a la semana"? "semana":obj["v3"]=="al mes"? "mes":"año";
 
@@ -99,7 +115,7 @@ function App() {
       ancho={ width: inicio*100/fin+'%'};
     }else(ancho={width:100+'%'})
 
-
+    
     const clickTarjeta=({})=>{
       setIndex(key);
       setMostrarFormulario(true);
@@ -120,6 +136,7 @@ function App() {
       inicio++;
       setInput6(almacenamiento[key]["v6"]=inicio);
       }else{setInput6(almacenamiento[key]["v6"]=fin);}
+      localStorage.setItem('metas',[JSON.stringify(almacenamiento)]);
     }
     
      
@@ -153,9 +170,11 @@ function App() {
       const formJson = Object.fromEntries(formData.entries());
       const data=almacenamiento.slice(0);
       data[index]=formJson;
+      
       setAlmacenamiento(data);
       setMostrarFormulario(false);
-      
+      localStorage.setItem('metas',[JSON.stringify(data)]);
+      console.log(data);
     }
       
     else{
@@ -166,9 +185,13 @@ function App() {
     const formData = new FormData(form);
     const formJson = Object.fromEntries(formData.entries());
     setAlmacenamiento(almacenamiento=>([...almacenamiento,formJson]));
-    setMostrarFormulario(false);}
-   
+    setMostrarFormulario(false);
+
+    const toLocalStrg=[...almacenamiento,formJson];
+    localStorage.setItem('metas',[JSON.stringify(toLocalStrg)]);
+  } 
   }
+
   function clickCancelarForm({}){
     setMostrarFormulario(false);
    
@@ -191,7 +214,15 @@ function App() {
     setIndex(undefined);
     setUpdate(false);
   }
-
+  const borar=()=>{
+    let copia=almacenamiento.slice(0);
+    copia.splice(index,1);
+    console.log(copia);
+    setAlmacenamiento(copia);
+    localStorage.setItem('metas',[JSON.stringify(copia)]);
+    setIndex(undefined);
+    setMostrarFormulario(false);
+  }
   /*esta seccion es donde se define la estructura de la app*/
   return (
     <div className="App">

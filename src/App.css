@@ -101,7 +101,7 @@ footer{
 /*a partir de esta seccion son los estilos para la funcion Tarjeta*/
 
 .tarjeta{
-
+ min-width: 660px;
   height: 55px;
   display:grid;
   grid-template-columns: auto 20%;
@@ -168,6 +168,7 @@ width: 80%;
 .tarjeta button{
   grid-column-start:2 ;
   grid-column-end: 3;
+  min-width: 120px;
   height: 40px;
   border-radius: 20px;
   background-color:rgb(247, 247, 247);
@@ -206,7 +207,6 @@ input{
   min-width: 90%;
   height: 37px;
   border-radius: 15px;
- 
   border: none;
   background-color: rgb(243, 240, 240);
   padding-left: 15px;
@@ -286,7 +286,7 @@ font-weight: 600;
   margin-right: 15px;
   height: 50%;
   width: 15%;
-
+  min-width: 100px;
   border-radius: 20px;
   background-color: white;
   border: none;
@@ -297,7 +297,9 @@ font-weight: 600;
 
 .updateButton{
   background: linear-gradient(to right, white, rgba(0, 0, 0, 0.945));
-  margin-left: 90px ;
+  float: left;
+  min-width: 100px;
+  margin-left: 15px;
   border-radius: 20px;
   background-color: white;
   border: none;
@@ -307,5 +309,25 @@ font-weight: 600;
   height: 50%;
   width: 15%;
   color:white;
+}
+
+.deleteButton{
+  
+  min-width: 100px;
+  
+  border-radius: 20px;
+  background-color: white;
+  border: red;
+  box-shadow: 2px 2px 5px gray;
+  font-weight: 600;
+  margin-top:2%;
+  height: 50%;
+  width: 15%;
+  color:red;
+}
+
+.deleteButton:hover{
+  background-color:  red;
+  color: white;
 }
 
