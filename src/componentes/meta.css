@@ -1,0 +1,76 @@
+.contenedor{
+    box-sizing: border-box;
+    padding: 15px;
+    min-width: 660px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    border-radius: 10px;
+    background-color: white;
+    margin: 15px;
+    box-shadow: 2px 2px 5px gray;
+  }
+  
+  
+  
+  
+  
+  .emoji{
+    margin: auto;
+    height: 40px;
+    width: 40px;
+    font-size: large;
+    border-radius: 50%;
+    box-shadow: inset 2px 2px 5px  lightgrey;
+    
+  }
+  .divUno{
+  width: 50%;
+  display: flex;
+  }
+  
+  .parrafoFrecuencia{
+    width: 33%;
+  }
+  
+  .descripcion{
+    width: 50%;
+  }
+  
+  .divDos{
+    width: 50%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .parrafoCompletado{
+    width: 50%;
+  }
+  
+  .barra1{
+  margin: auto;
+  width: 80%;
+  }
+  
+  .barra2{
+    border-radius: 5px;
+    height: 9px;
+   
+    background: linear-gradient(to right, rgba(3, 255, 209, 0.745), rgb(0, 89, 255));
+    box-shadow: 2px 2px 5px gray;
+  }
+  
+  .contenedor button{
+    margin: auto;
+    float: right;
+    min-width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    background-color:rgb(247, 247, 247);
+    border: none;
+    margin-right: 5px;
+    box-shadow: 2px 2px 5px gray;
+    font-weight: 600;
+  }
+  

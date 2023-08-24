@@ -1,0 +1,21 @@
+.lateral {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    height: 50px;
+    width: 100%;
+    border: none;
+    background-color:rgb(247, 247, 247);
+    font-weight: 600;
+    padding-left: 10%;
+    
+    
+  }
+  .lateral:hover{
+    background-color:  lightgrey;
+  }
+  .tarjetaicon{
+    height: 25px;
+    width: 25px;
+    margin: 8px;
+  }

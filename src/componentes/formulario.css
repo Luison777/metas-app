@@ -1,0 +1,168 @@
+form{
+ 
+    width: 100%;
+    box-sizing: border-box;
+    height: 650px; 
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px gray;
+    position: relative;
+  }
+  
+  label{
+   
+   display: inline-block;
+   width: 100%;
+   margin-bottom:6%;
+    height: 8%;
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+   
+  }
+  
+  input{
+  
+   width: 95%;
+  
+    height: 85%;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(243, 240, 240);
+    padding-left: 15px;
+    padding-right: 15px;
+    box-shadow: inset 4px 4px 5px  lightgrey;
+  }
+  
+  select{
+    
+    align-content: center;
+    align-items: center;
+    min-width: 100%;
+    background-color: aqua;
+    height: 90%;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(243, 240, 240);
+    padding-left: 15px;
+    padding-right: 15px;
+    box-shadow: inset 4px 4px 5px  lightgrey;
+    
+  }
+  
+  .seccionFrecuencia{
+    display: grid;
+    max-width: 93%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 35% 100%;
+    height: 8%;
+    margin-bottom: 40px;
+    grid-column-gap:40px;
+  
+  }
+   .selectFrecuencia{
+    grid-column-start: 2 ;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    height: 90%;
+    
+    }
+    .inputFrecuencia{
+  
+    grid-column-start: 1 ;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  
+  }
+  
+  
+  /*esta seccion incluye los estilos para el footer y botones del formulario*/
+
+  .footerForm{
+   
+    position: absolute;
+    bottom: 0;
+    width: 100%; 
+    
+   
+    height: 12%;
+    margin-left: -20px;
+    
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.785), white);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 2px 2px 5px gray;
+  }
+
+
+  /*seccion para estilos de botones de formulario*/
+
+  .crearButton{
+    float:left;
+    margin-top:2%;
+    margin-left: 15px;
+    height: 50%;
+    width: 15%;
+    
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    box-shadow: 2px 2px 5px black;
+    font-weight: 600;
+    }
+    
+    .cancelarButton{
+      float: right;
+      margin-top: 2%;
+      margin-right: 15px;
+      height: 50%;
+      width: 15%;
+      min-width: 100px;
+      border-radius: 20px;
+      background-color: white;
+      border: none;
+      box-shadow: 2px 2px 5px gray;
+      font-weight: 600;
+    
+    }
+    
+    .updateButton{
+      background: linear-gradient(to right, white, rgba(0, 0, 0, 0.945));
+      float: left;
+      min-width: 100px;
+      margin-left: 15px;
+      border-radius: 20px;
+      background-color: white;
+      border: none;
+      box-shadow: 2px 2px 5px gray;
+      font-weight: 600;
+      margin-top:2%;
+      height: 50%;
+      width: 15%;
+      color:white;
+    }
+    
+    .deleteButton{
+      
+      min-width: 100px;
+      
+      border-radius: 20px;
+      background-color: white;
+      border: red;
+      box-shadow: 2px 2px 5px gray;
+      font-weight: 600;
+      margin-top:2%;
+      height: 50%;
+      width: 15%;
+      color:red;
+    }
+    
+    .deleteButton:hover{
+      background-color:  red;
+      color: white;
+    }
+    
