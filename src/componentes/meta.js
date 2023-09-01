@@ -1,37 +1,43 @@
-/*const completado=()=>{
-  if (inicio<fin){
-  inicio++;
-  setInput6(almacenamiento[key]["v6"]=inicio);
-  }else{setInput6(almacenamiento[key]["v6"]=fin);}
-  localStorage.setItem('metas',[JSON.stringify(almacenamiento)]);
-}*/
-/*    
-    let ancho;
-    if (inicio<fin){
-      ancho={ width: inicio*100/fin+'%'};
-    }else(ancho={width:100+'%'})*/
+
+import { Link } from "react-router-dom";
+import { Contexto } from "../servicios/Memoria";
+import { useContext } from "react";
 
 function Meta({obj}){
- 
-       const {descripcion,frecuencia,tiempo,veces,fecha,completada,emoji}=obj;
+
+       const {id,descripcion,frecuencia,tiempo,veces,fecha,completada,emoji}=obj;
+       const porcentaje=completada*100/veces;
+       const style={'width':porcentaje+'%'};
+       const [estado,enviar]=useContext(Contexto);
+
+      function completado(){
+        const copia={...estado.objetos[id]};
+        let completada=parseInt(copia.completada);
+        let veces=parseInt(copia.veces);
+        if(completada<veces){
+        copia.completada=(parseInt(copia.completada)+1).toString()}
+        else{return;}
+        enviar({tipo:'actualizar',meta:copia,id:id});
+      }
+
     return  (
-        <div  className='contenedor' >
-
-        <div className="divUno">
-          <p className='emoji'>{emoji}</p>
-          <p className='parrafoFrecuencia'>{frecuencia}<sub>/{tiempo}</sub></p>
-          <p  className='descripcion'>{descripcion}</p>
+      
+        <div className='contenedor' >
+            <Link className='divUno'to={`/lista/${id}`} >
+         
+            <p className='emoji'>{emoji}</p>
+            <p className='parrafoFrecuencia'>{frecuencia}<sub>/{tiempo}</sub></p>
+            <p  className='descripcion'>{descripcion}</p>
+            <span className="parrafoCompletado">{completada} de {veces}
+              <div className='barra1'><div style={style} className='barra2'></div></div>
+            </span>
           
+          </Link>
+          <div className="divDos">
+            <button onClick={completado}>Completado</button>
+          </div>
         </div>
-
-        <div className="divDos">
-        <p className="parrafoCompletado">{completada} de {veces}
-        <div className='barra1'><div className='barra2'></div></div>
-        </p>
-        <button onClick={''} >Completado</button>
-        </div>
-
-        </div>
+      
       );
 }
 

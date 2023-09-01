@@ -1,8 +1,9 @@
-const EntradaLateral=({nombre,destino,clase,src})=>{
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+const EntradaLateral=({nombre,onClick,clase,src,link})=>{
   
-    return  (<button className={clase} onClick={destino}>
+    return  (<Link className='noUnderline' to={link}><button className={clase} onClick={onClick}>
      <img className='tarjetaicon' src={src}></img>{nombre}
-   </button>)
+   </button></Link>)
    }
 
 export default EntradaLateral;

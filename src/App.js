@@ -6,38 +6,32 @@ import './componentes/entradaLateral.css';
 import './componentes/mensaje.css';
 
 import { useState } from 'react';
-import Formulario from './componentes/formulario';
-import Meta from './componentes/meta';
-import EntradaLateral from './componentes/entradaLateral';
-import Mensaje from './componentes/mensaje';
-import Lista from './componentes/lista';
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-import Header from './layout/header.js';
-import Aside from './layout/aside.js';
-import Main from './layout/main.js';
-import Footer from './layout/footer.js';
+import Layout from './componentes/layout';
+import Lista from './componentes/lista';
+import Formulario from './componentes/formulario';
+import Mensaje from './componentes/mensaje';
+import Boton from './componentes/boton';
+import Main from './layout/main';
 
 function App() {
-  let estadoLocal=JSON.parse(localStorage.getItem('metas'));
-  let informacion;
-  estadoLocal? informacion=estadoLocal :informacion=[];
-
+ 
   
   return (
     <div className="App">
       <>
-    <Header></Header>
-
-    <Aside> 
-    <EntradaLateral src='.\lista.png' clase={"lateral"} nombre={'Lista de Metas'} destino={''}/>
-    <EntradaLateral src='.\plus.png' clase={"lateral"} nombre={'Nueva Meta'} destino={''}/>
-    </Aside>
-
-    <Main>
-     <Lista></Lista>
-    </Main>
-
-    <Footer></Footer>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+        <Route index element={<Lista />}/>
+          <Route path="lista" element={<Lista />}>
+            <Route path="/lista/:id" element={<div className='modal'> <Formulario /></div>}/>
+          </Route>
+          <Route path="nueva" element={<Formulario className={'form'} />}>
+            <Route path="/nueva" element={ <Boton type={'submit'} texto={'Crear'} className={'crearButton'}/>}/>
+          </Route>    
+        </Route>  
+      </Routes>
      </>
     </div>
   );

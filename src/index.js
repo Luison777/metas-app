@@ -4,11 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//import * as ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import Memoria from './servicios/Memoria';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+
+    <Memoria>
+     <BrowserRouter>
     <App />
-  </React.StrictMode>
+    </BrowserRouter>
+    </Memoria>
+
 );
 
 // If you want to start measuring performance in your app, pass a function

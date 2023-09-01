@@ -1,4 +1,5 @@
 .contenedor{
+  display: inline-block;
     box-sizing: border-box;
     padding: 15px;
     min-width: 660px;
@@ -10,25 +11,26 @@
     background-color: white;
     margin: 15px;
     box-shadow: 2px 2px 5px gray;
+    color: black;
+   
   }
-  
-  
-  
-  
   
   .emoji{
     margin: auto;
     height: 40px;
-    width: 40px;
+    width: 50px;
     font-size: large;
-    border-radius: 50%;
+    border-radius: 100%;
     box-shadow: inset 2px 2px 5px  lightgrey;
     
   }
   .divUno{
-  width: 50%;
+  width: 200%;
   display: flex;
-  }
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
   
   .parrafoFrecuencia{
     width: 33%;
@@ -46,6 +48,7 @@
   
   .parrafoCompletado{
     width: 50%;
+    height: 10%;
   }
   
   .barra1{
@@ -74,3 +77,4 @@
     font-weight: 600;
   }
   
+

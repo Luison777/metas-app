@@ -1,37 +1,18 @@
+import { useContext } from 'react';
 import Meta from './meta';
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Contexto } from '../servicios/Memoria';
 
-const listaMock=[
-  {
-    descripcion:'ej. correr 52',
-    frecuencia:'1',
-    tiempo:'dia',
-    veces:'58',
-    fecha:'fffff',
-    completada:'1',
-    emoji:'🏃‍♂️',
-   },
-   {
-    descripcion:'ej. correr 52',
-    frecuencia:'1',
-    tiempo:'dia',
-    veces:'58',
-    fecha:'fffff',
-    completada:'1',
-    emoji:'🏃‍♂️',
-   },
-   {
-    descripcion:'ej. correr 52',
-    frecuencia:'1',
-    tiempo:'dia',
-    veces:'58',
-    fecha:'fffff',
-    completada:'1',
-    emoji:'🏃‍♂️',
-   }
-];
 
 function Lista(){
-  return listaMock.map(obj=><Meta obj={obj}></Meta>);
+  const [estado,enviar]=useContext(Contexto);
+  
+  return (
+    <>
+    {estado.orden.map(id=><Meta key={id} obj={estado.objetos[id]}/>)}
+    <Outlet></Outlet>
+    </>
+  )
 }
 
 export default Lista;
