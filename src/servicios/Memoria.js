@@ -61,13 +61,12 @@ const estadoInicial= metasPromise?
                 orden: metas.map(meta=>meta.id),
                 objetos: metas.reduce((objeto,meta)=>({...objeto,[meta.id]:meta}),{})
             };
-            
+    
             return nuevoEstado;
         };
 
         case 'crear':{
             const id=accion.id;
-            
             const nuevoEstado={
                 orden: [...estado.orden,id],
                 objetos: {
@@ -88,7 +87,7 @@ const estadoInicial= metasPromise?
                 
                 const nuevoEstado={...estado};
                 //localStorage.setItem('meta',JSON.stringify(nuevoEstado));
-                
+               
                 return nuevoEstado;
             };
 

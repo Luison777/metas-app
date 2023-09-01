@@ -21,15 +21,23 @@ export async function crearMeta(meta){
     //console.log('meta creada',metaCreada);
     return metaCreada;
 }
-export async function actualizarMeta(){
-    const response=await fetch('/metas.json');
+export async function actualizarMeta(meta,id){
+    const response=await fetch(`/api/metas/${id}`,{
+        method:'PUT',
+        body:JSON.stringify(meta),
+        headers:{
+            'content-type':'application/json; charset=utf-8'
+        }
+    });
     const metaActualizada=await response.json();
-    console.log('meta actualizada',metaActualizada);
+    //console.log('meta actualizada',metaActualizada);
     return metaActualizada;
 }
-export async function borrarMeta(){
-    const response=await fetch('/metas.json');
-    const metaBorrada=await response.json();
-    console.log('meta creada',metaBorrada.id);
-    return metaBorrada.id;
+export async function borrarMeta(id){
+   await fetch(`/api/metas/${id}`,{
+        method:'DELETE'
+    });
+    
+    console.log('meta borrada',id);
+  
 }

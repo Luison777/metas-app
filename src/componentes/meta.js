@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { Contexto } from "../servicios/Memoria";
 import { useContext } from "react";
+import { actualizarMeta } from "../servicios/servicios";
 
 function Meta({obj}){
 
@@ -10,14 +11,16 @@ function Meta({obj}){
        const style={'width':porcentaje+'%'};
        const [estado,enviar]=useContext(Contexto);
 
-      function completado(){
+      async function completado(){
         const copia={...estado.objetos[id]};
         let completada=parseInt(copia.completada);
         let veces=parseInt(copia.veces);
         if(completada<veces){
         copia.completada=(parseInt(copia.completada)+1).toString()}
         else{return;}
-        enviar({tipo:'actualizar',meta:copia,id:id});
+        const intId=parseInt(id);
+        const metaUpdated= await actualizarMeta(copia,intId);
+        enviar({tipo:'actualizar',meta:metaUpdated,id:id});
       }
 
     return  (

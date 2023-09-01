@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Routes, Route, Outlet, Link, useNavigate, useParams, json } from "react-router-dom";
 import Boton from '../componentes/boton'; 
 import { Contexto } from '../servicios/Memoria';
-import { crearMeta } from '../servicios/servicios';
+import { actualizarMeta, borrarMeta, crearMeta } from '../servicios/servicios';
 
 const Formulario=({className})=>{
     let opcionesFrecuencia=['dia','semana','mes','año'];
@@ -38,7 +38,7 @@ const Formulario=({className})=>{
 
       if(id){
         //este codigo actualiza la meta en la memoria
-        actualizar(formString);
+        actualizar(formJson);
       }else{
         //este codigo crea una nueva meta en la memoria
         crear(formString);
@@ -51,18 +51,25 @@ const Formulario=({className})=>{
     const nuevaMeta= await crearMeta(meta);
     const id=nuevaMeta.id;
     enviar({tipo:'crear',meta:nuevaMeta,id:id});
-    navegar('/lista');}
+    navegar('/lista');
+  }
 
-  function actualizar(meta){
-    enviar({tipo:'actualizar',meta:meta,id:id});
+  async function actualizar(meta){
+   
+    const intId=parseInt(id);
+    meta["id"]=intId;
+    const metaUpdated= await actualizarMeta(meta,intId);
+    enviar({tipo:'actualizar',meta:metaUpdated,id:id});
     navegar('/lista');
   }
   
   function cancelar(){
       navegar('/lista');
     }
-  function borrar(){
-      enviar({tipo:'borrar',id:id});
+  async function borrar(){
+      const intId=parseInt(id);
+      await borrarMeta(intId);
+      enviar({tipo:'borrar',id:intId});
       navegar('/lista');
     }
   
