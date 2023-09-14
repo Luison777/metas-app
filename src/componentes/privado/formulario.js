@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { Routes, Route, Outlet, Link, useNavigate, useParams, json } from "react-router-dom";
-import Boton from '../componentes/boton'; 
-import { Contexto } from '../servicios/Memoria';
-import { actualizarMeta, borrarMeta, crearMeta } from '../servicios/servicios';
+import {  Outlet, useNavigate, useParams} from "react-router-dom";
+import Boton from '../complementos/boton'; 
+import { Contexto } from '../../servicios/Memoria';
+import { actualizarMeta, borrarMeta, crearMeta } from '../../servicios/servicios';
 
 const Formulario=({className})=>{
     let opcionesFrecuencia=['dia','semana','mes','año'];

@@ -11,6 +11,8 @@ html{
 }
 body{height: 100%;
   width: 100%;
+  background: linear-gradient(to bottom right, white, lightgrey);
+
   }
 
 #root{height: 100%;}
@@ -31,12 +33,13 @@ grid-row-start: 1;
 grid-row-end: 2;
 box-shadow: 2px 2px 5px gray;
 text-align: left;
+align-items: center;
 padding-top: 1%;
 padding-bottom:  1%;
 padding-left: 15px;
 font-weight: 700;
 font-size: large;
-
+z-index: 9999; 
 }
 
 .fuego{
@@ -75,6 +78,7 @@ footer{
   background: linear-gradient(to right, pink, purple);
   padding-right: 8px;
   padding-top: .1%;
+  z-index: 9999; 
 }
 
 

@@ -1,12 +1,12 @@
 
 import { Link } from "react-router-dom";
-import { Contexto } from "../servicios/Memoria";
+import { Contexto } from "../../servicios/Memoria";
 import { useContext } from "react";
-import { actualizarMeta } from "../servicios/servicios";
+import { actualizarMeta } from "../../servicios/servicios";
 
 function Meta({obj}){
 
-       const {id,descripcion,frecuencia,tiempo,veces,fecha,completada,emoji}=obj;
+       const {id,descripcion,frecuencia,tiempo,veces,completada,emoji}=obj;
        const porcentaje=completada*100/veces;
        const style={'width':porcentaje+'%'};
        const [estado,enviar]=useContext(Contexto);

@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import Meta from './meta';
-import { Routes, Route, Outlet, Link } from "react-router-dom";
-import { Contexto } from '../servicios/Memoria';
+import {  Outlet} from "react-router-dom";
+import { Contexto } from '../../servicios/Memoria';
 
 
 function Lista(){
-  const [estado,enviar]=useContext(Contexto);
+  const [estado]=useContext(Contexto);
   
   return (
     <>

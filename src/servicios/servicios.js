@@ -1,10 +1,15 @@
 
-export async function pedirMetas(){
-    const response=await fetch('/api/metas');
+export async function pedirMetas(token){
+    const response=await fetch('/api/metas',{
+        method:'GET',
+        headers:{
+            'Authorization': `Bearer ${token}`
+        }
+    });
     const metas=await response.json();
     return metas;
 }
-export async function pedirMera(id){
+export async function pedirMeta(id){
     const response=await fetch(`/api/metas${id}`);
     const meta=await response.json();
     return meta;
