@@ -5,15 +5,15 @@ import './componentes/meta.css';
 import './componentes/entradaLateral.css';
 import './componentes/mensaje.css';
 
-import { useState } from 'react';
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+
+import { Routes, Route } from "react-router-dom";
 
 import Layout from './componentes/layout';
 import Lista from './componentes/lista';
 import Formulario from './componentes/formulario';
-import Mensaje from './componentes/mensaje';
+
 import Boton from './componentes/boton';
-import Main from './layout/main';
+
 
 function App() {
  

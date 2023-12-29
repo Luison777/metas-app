@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import Meta from './meta';
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import { Contexto } from '../servicios/Memoria';
 
 

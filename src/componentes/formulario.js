@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Routes, Route, Outlet, Link, useNavigate, useParams, json } from "react-router-dom";
+import {  Outlet,  json,  useNavigate, useParams } from "react-router-dom";
 import Boton from '../componentes/boton'; 
 import { Contexto } from '../servicios/Memoria';
 import { actualizarMeta, borrarMeta, crearMeta } from '../servicios/servicios';
@@ -41,16 +41,19 @@ const Formulario=({className})=>{
         actualizar(formJson);
       }else{
         //este codigo crea una nueva meta en la memoria
-        crear(formString);
+        crear(formJson);
     }
   
   }
     
   async function crear(meta){
 
-    const nuevaMeta= await crearMeta(meta);
-    const id=nuevaMeta.id;
-    enviar({tipo:'crear',meta:nuevaMeta,id:id});
+    //const nuevaMeta= await crearMeta(meta);
+    //const id=nuevaMeta.id;
+    const numbers=estado.orden.map(numero => parseInt(numero, 10));
+    const id=Math.max(...numbers)+1;
+    meta["id"]=id;
+    enviar({tipo:'crear',meta:meta,id:id});
     navegar('/lista');
   }
 
@@ -58,8 +61,8 @@ const Formulario=({className})=>{
    
     const intId=parseInt(id);
     meta["id"]=intId;
-    const metaUpdated= await actualizarMeta(meta,intId);
-    enviar({tipo:'actualizar',meta:metaUpdated,id:id});
+    //const metaUpdated= await actualizarMeta(meta,intId);
+    enviar({tipo:'actualizar',meta:meta,id:id});
     navegar('/lista');
   }
   
@@ -68,7 +71,7 @@ const Formulario=({className})=>{
     }
   async function borrar(){
       const intId=parseInt(id);
-      await borrarMeta(intId);
+      //await borrarMeta(intId);
       enviar({tipo:'borrar',id:intId});
       navegar('/lista');
     }

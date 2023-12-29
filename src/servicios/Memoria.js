@@ -1,47 +1,24 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { pedirMetas } from "./servicios";
 
 
 const listaMock=[
     {
-      id:'1',
-      descripcion:'meta 1',
+      id:1,
+      descripcion:'Ejemplo:correr',
       frecuencia:'1',
       tiempo:'dia',
       veces:'58',
       fecha:'fffff',
-      completada:'1',
+      completada:'3',
       emoji:'🏃‍♂️',
      },
-     {
-      id:'2',
-      descripcion:'meta 2',
-      frecuencia:'1',
-      tiempo:'dia',
-      veces:'58',
-      fecha:'fffff',
-      completada:'5',
-      emoji:'🏃‍♂️',
-     },
-     {
-      id:'3',
-      descripcion:'meta 3',
-      frecuencia:'1',
-      tiempo:'dia',
-      veces:'58',
-      fecha:'fffff',
-      completada:'27',
-      emoji:'🏃‍♂️',
-     }
+
+
   ];
 
-  //let memoria=JSON.parse(localStorage.getItem('meta'));
- /* const estadoInicial= metas? metas: {
-    orden:[],
-    objetos:{}
-    
-};*/
-const metasPromise = await pedirMetas();
+ 
+/*const metasPromise = await pedirMetas();
 
 const estadoInicial= metasPromise? 
 {
@@ -51,7 +28,7 @@ const estadoInicial= metasPromise?
 {
     orden:[],
     objetos:{}
-};
+};*/
 
   const reductor=(estado,accion)=>{
     switch(accion.tipo){
@@ -74,7 +51,7 @@ const estadoInicial= metasPromise?
                     [id]:accion.meta
                 }
             };
-            //localStorage.setItem('meta',JSON.stringify(nuevoEstado));
+            localStorage.setItem('meta',JSON.stringify(nuevoEstado));
             return nuevoEstado;
         };
 
@@ -86,7 +63,7 @@ const estadoInicial= metasPromise?
                 };
                 
                 const nuevoEstado={...estado};
-                //localStorage.setItem('meta',JSON.stringify(nuevoEstado));
+                localStorage.setItem('meta',JSON.stringify(nuevoEstado));
                
                 return nuevoEstado;
             };
@@ -100,17 +77,34 @@ const estadoInicial= metasPromise?
                 objetos: estado.objetos
                 
              }
-            // localStorage.setItem('meta',JSON.stringify(nuevoEstado));
+            localStorage.setItem('meta',JSON.stringify(nuevoEstado));
              
                return nuevoEstado;
             };
+        default: return 'nada';
         };
     }
-//const metas=reductor(estadoInicial,{tipo:'colocar',metas: listaMock});
 
+    
+    let memoria=JSON.parse(localStorage.getItem('meta'));
+
+    const obtenerEstadoInicial = () => {
+        const metasGuardadas = memoria ? memoria : {
+            orden: listaMock.map(meta => meta.id),
+            objetos: listaMock.reduce((objeto, meta) => ({ ...objeto, [meta.id]: meta }), {}),
+          };
+
+        return metasGuardadas;
+      };
+      
 export const Contexto=createContext(null);
 const Memoria=({children})=>{
-   const[estado,enviar]= useReducer(reductor,estadoInicial);
+    const [estado, enviar] = useReducer(reductor, {}, obtenerEstadoInicial);
+
+    // Guardar en el localStorage cuando el estado cambie
+    useEffect(() => {
+      localStorage.setItem('meta', JSON.stringify(estado));
+    }, [estado]);
 
     return(
         <Contexto.Provider value={[estado,enviar]}>

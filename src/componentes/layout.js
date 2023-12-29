@@ -6,7 +6,7 @@ import EntradaLateral from '../componentes/entradaLateral';
 
 
 
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 
 function Layout(){
     return (

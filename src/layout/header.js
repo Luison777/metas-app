@@ -1,6 +1,6 @@
 function Header(){
     return(
-        <header><img className='fuego' src='.\fuego.png'></img>METAS APP</header>
+        <header><img alt="fuegoimage" className='fuego' src='.\fuego.png'></img>METAS APP</header>
     );
 }
 

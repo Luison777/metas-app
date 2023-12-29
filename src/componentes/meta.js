@@ -6,7 +6,7 @@ import { actualizarMeta } from "../servicios/servicios";
 
 function Meta({obj}){
 
-       const {id,descripcion,frecuencia,tiempo,veces,fecha,completada,emoji}=obj;
+       const {id,descripcion,frecuencia,tiempo,veces,completada,emoji}=obj;
        const porcentaje=completada*100/veces;
        const style={'width':porcentaje+'%'};
        const [estado,enviar]=useContext(Contexto);
@@ -19,8 +19,8 @@ function Meta({obj}){
         copia.completada=(parseInt(copia.completada)+1).toString()}
         else{return;}
         const intId=parseInt(id);
-        const metaUpdated= await actualizarMeta(copia,intId);
-        enviar({tipo:'actualizar',meta:metaUpdated,id:id});
+        //const metaUpdated= await actualizarMeta(copia,intId);
+        enviar({tipo:'actualizar',meta:copia,id:id});
       }
 
     return  (

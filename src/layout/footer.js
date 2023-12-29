@@ -1,6 +1,6 @@
 function Footer(){
     return(
-        <footer>Developed and Designed by Luis Angel Perez Frausto. &copy; 2023 All rights reserved.</footer> 
+        <footer>Developed by Luis Angel Perez Frausto.Designed by Academia X &copy; 2023 All rights reserved.</footer> 
     );
 }
 
