@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import {  Outlet,  json,  useNavigate, useParams } from "react-router-dom";
+import {  Outlet,  useNavigate, useParams } from "react-router-dom";
 import Boton from '../componentes/boton'; 
 import { Contexto } from '../servicios/Memoria';
-import { actualizarMeta, borrarMeta, crearMeta } from '../servicios/servicios';
+
 
 const Formulario=({className})=>{
     let opcionesFrecuencia=['dia','semana','mes','año'];
@@ -34,7 +34,7 @@ const Formulario=({className})=>{
   const form = e.target;
   const formData = new FormData(form);
   const formJson = Object.fromEntries(formData.entries());
-  const formString= JSON.stringify(formJson);
+
 
       if(id){
         //este codigo actualiza la meta en la memoria

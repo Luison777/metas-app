@@ -1,5 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
-import { pedirMetas } from "./servicios";
+
 
 
 const listaMock=[

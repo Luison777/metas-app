@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { Contexto } from "../servicios/Memoria";
 import { useContext } from "react";
-import { actualizarMeta } from "../servicios/servicios";
+
 
 function Meta({obj}){
 
@@ -18,7 +18,7 @@ function Meta({obj}){
         if(completada<veces){
         copia.completada=(parseInt(copia.completada)+1).toString()}
         else{return;}
-        const intId=parseInt(id);
+
         //const metaUpdated= await actualizarMeta(copia,intId);
         enviar({tipo:'actualizar',meta:copia,id:id});
       }

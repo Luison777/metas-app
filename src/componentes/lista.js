@@ -5,7 +5,7 @@ import { Contexto } from '../servicios/Memoria';
 
 
 function Lista(){
-  const [estado,enviar]=useContext(Contexto);
+  const [estado,]=useContext(Contexto);
   
   return (
     <>
